@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API-tester</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+                $(document).ready(() => {
+            $(".form").each( function() {
+                $( this ).on("submit", (e) => {
+                        e.preventDefault();
+                        var data = $(e.target).serialize();
+                           
+                            $.post("V1api.php", data, (returnData) => {
+                                $(".tja").html(JSON.stringify(returnData));
+                            });
+                    });
+            });
+        });
+        
+    </script>
+</head>
+
+<body>
+                <h2>Registrera användare:</h2>
+
+            <form class="form">
+                <input type="hidden" name="post_type" value="signup" >
+                <input type="text" name="firstname" placeholder="firstname" /><br />
+                <input type="text" name="lastname" placeholder="lastname" /><br />
+                <input type="email" name="email" placeholder="email" /><br />
+                <input type="text" name="username" placeholder="username" /><br />
+                <input type="password" name="password" placeholder="password" /><br />
+                <input type="submit" />
+            </form>
+
+            <hr />
+
+            <h2>Logga in användare:</h2>
+
+            <form class="form">
+                <input type="hidden" name="post_type" value="login" >
+                <input type="text" name="username" placeholder="username" /><br />
+                <input type="password" name="password" placeholder="password" /><br />
+                <input type="submit" />
+            </form>
+
+        <hr />
+
+        <h2>Lägg till product:</h2>
+
+        <form class="form">
+            <input type="hidden" name="post_type" value="addProduct" >
+            <input type="text" name="token" placeholder="token" /><br />
+            <input type="text" name="productTitle" placeholder="productTitle" /><br />
+            <input type="text" name="pric" placeholder="pric" /><br />
+            <input type="text" name="size" placeholder="size" /><br />
+            <input type="submit" />
+        </form>
+
+    <hr />
+
+        <h2>Uppdatera product:</h2>
+
+        <form class="form">
+            <input type="hidden" name="post_type" value="updateProduct" >
+            <input type="text" name="token" placeholder="token" /><br />
+            <input type="number" name="productid" placeholder="product id" /><br />
+            <input type="text" name="productTitle" placeholder="productTitle" /><br />
+            <input type="text" name="pric" placeholder="pric" /><br />
+            <input type="text" name="size" placeholder="size" /><br />
+            <input type="submit" />
+        </form>
+
+        <hr />
+
+    <h2>Radera en product:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="deletProduct" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="text" name="productid" placeholder="productid" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+
+    <h2>Hämta en product:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="showOneProduct" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="text" name="productid" placeholder="productid" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+
+    <h2>Hämta alla producter:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="showAllProducts" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+
+    <h2>Lägg till i varukrog:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="addToCart" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="text" name="productid" placeholder="productid" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+
+    <h2>Tabort från varukorg:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="deletFromCart" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="text" name="orderid" placeholder="orderid" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+
+    <h2>Checkout:</h2>
+
+    <form class="form">
+        <input type="hidden" name="post_type" value="checkout" >
+        <input type="text" name="token" placeholder="token" /><br />
+        <input type="submit" />
+    </form>
+
+    <hr />
+    <div class="tja">
+    
+    </div>
+
+</body>
+
+</html>
